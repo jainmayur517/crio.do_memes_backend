@@ -49,15 +49,7 @@ Meme.create(
 
 )
 */
-app.use((req,res,next) => {
-res.header("Access-Control-Allow-Origin","*");
-res.header("Access-Control-Allow-Header","*");
 
-if(req.method === 'OPTIONS'){
-    res.header('Access-Control-Allow-Methods','PUT, POST, PATCH, DELETE, GET');
-    return res.json.status(200).json({});
-}
-});
 
 
 app.get("/memes",function(req,res){
