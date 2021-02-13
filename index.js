@@ -3,12 +3,12 @@ var app =exp();
 var serve=require('express-static');
 var mongoose=require("mongoose");
 
-const cors = require('cors');
+//const cors = require('cors');
 
 var request=require('request');
 app.set("view engine","ejs");
 var bodyParser=require("body-parser");
-app.use(cors());
+//app.use(cors());
 app.use(bodyParser.json());
 
 //mongoose.connect("mongodb+srv://crio_user:Mj123@cluster0.lass7.mongodb.net/test?retryWrites=true&w=majority");
@@ -25,6 +25,8 @@ var memeSchema = new mongoose.Schema({
  name: String,
  url: String,
 });
+
+
 
 var Meme=mongoose.model("Meme",memeSchema);
 /*
@@ -47,6 +49,15 @@ Meme.create(
 
 )
 */
+app.use((req,res,next) => {
+res.header("Access-Control-Allow-Origin","*");
+res.header("Access-Control-Allow-Header","*");
+
+if(req.method === 'OPTIONS'){
+    res.header('Access-Control-Allow-Methods','PUT, POST, PATCH, DELETE, GET');
+    return res.json.status(200).json({});
+}
+});
 
 
 app.get("/memes",function(req,res){
