@@ -2,6 +2,7 @@ var exp= require('express');
 var app =exp();
 var serve=require('express-static');
 var mongoose=require("mongoose");
+import normalize from 'normalize-mongoose';
 //const urlm=require("url");
 
 //const cors = require('cors');
@@ -28,7 +29,7 @@ var memeSchema = new mongoose.Schema({
  caption: String,
 });
 
-
+memeSchema.plugin(normalize);
 
 var Meme=mongoose.model("Meme",memeSchema);
 /*
@@ -51,6 +52,9 @@ Meme.create(
 
 )
 */
+
+
+//for CORS POLICY
 app.use((req,res,next) => {
 res.header("Access-Control-Allow-Origin","*");
 res.header("Access-Control-Allow-Headers",
@@ -67,6 +71,7 @@ next();
 });
 
 
+//get request to retrieve all memes
 app.get("/memes",function(req,res){
 //res.render("landing",{Meme: Meme});
 Meme.find({}, function(err,allmeme){
@@ -80,6 +85,7 @@ Meme.find({}, function(err,allmeme){
 });
 });
 
+//post request to post memes  
 app.post("/memes",function(req,res){
     var name=req.body.name;
     var url=req.body.url;
@@ -114,6 +120,8 @@ app.post("/memes",function(req,res){
 
 });
 
+
+//to retreive meme of particular id
 app.get("/memes/:id",async(req,res)=>{
 var id2=req.params.id;
 
@@ -126,6 +134,7 @@ try{
 })
 
 
+//edit request 
 app.patch("/memes/:id/",async(req,res)=>{
  try{      
     const change=await Meme.findById(req.params.id)
