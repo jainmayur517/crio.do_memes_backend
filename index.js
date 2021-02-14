@@ -2,7 +2,7 @@ var exp= require('express');
 var app =exp();
 var serve=require('express-static');
 var mongoose=require("mongoose");
-import normalize from 'normalize-mongoose';
+var normalize = require("normalize-mongoose");
 //const urlm=require("url");
 
 //const cors = require('cors');
