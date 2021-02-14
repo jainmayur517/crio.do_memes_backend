@@ -125,6 +125,17 @@ try{
 })
 
 
+app.patch("/memes/:id",async(req,res)=>{
+ try{   const change=await Meme.findById(req.params.id)
+    change.caption=req.body.caption
+    const a1=await change.save()
+    res.json(a1)
+}catch(err){
+    res.send(err)
+}
+})
+
+
 app.listen(process.env.PORT,process.env.IP)
 //function(){
   //console.log("server started!");
