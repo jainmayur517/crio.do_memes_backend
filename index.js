@@ -24,6 +24,7 @@ mongoose.connection.on("error", function(error) {
 var memeSchema = new mongoose.Schema({
  name: String,
  url: String,
+ caption: String,
 });
 
 
@@ -81,9 +82,11 @@ Meme.find({}, function(err,allmeme){
 app.post("/memes",function(req,res){
     var name=req.body.name;
     var url=req.body.url;
+    var caption=req.body.caption;
     var newMeme={
         name: name,
-        url: url
+        url: url,
+        caption: caption 
     }
 /*
     try{
