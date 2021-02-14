@@ -2,6 +2,7 @@ var exp= require('express');
 var app =exp();
 var serve=require('express-static');
 var mongoose=require("mongoose");
+//const urlm=require("url");
 
 //const cors = require('cors');
 
@@ -125,8 +126,11 @@ try{
 })
 
 
-app.patch("/memes/:id",async(req,res)=>{
- try{   const change=await Meme.findById(req.params.id)
+app.patch("/memes/:id/",async(req,res)=>{
+ try{      
+    const change=await Meme.findById(req.params.id)
+    if(req.body.url!="")
+    change.url=req.body.url
     change.caption=req.body.caption
     const a1=await change.save()
     res.json(a1)
