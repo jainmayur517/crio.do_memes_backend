@@ -129,7 +129,6 @@ try{
 app.patch("/memes/:id/",async(req,res)=>{
  try{      
     const change=await Meme.findById(req.params.id)
-    if(req.body.url!="")
     change.url=req.body.url
     change.caption=req.body.caption
     const a1=await change.save()
