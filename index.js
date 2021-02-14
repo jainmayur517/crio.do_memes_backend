@@ -79,17 +79,12 @@ Meme.find({}, function(err,allmeme){
 });
 
 app.post("/memes",function(req,res){
- /*   var name=req.body.name;
+    var name=req.body.name;
     var url=req.body.url;
     var newMeme={
         name: name,
         url: url
     }
-
-
-    */
-
-    vat newMeme=req.body;
 /*
     try{
         const a1=await newMeme.save()
