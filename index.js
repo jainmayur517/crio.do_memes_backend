@@ -13,7 +13,6 @@ var bodyParser=require("body-parser");
 //app.use(cors());
 app.use(bodyParser.json());
 
-//mongoose.connect("mongodb+srv://crio_user:Mj123@cluster0.lass7.mongodb.net/test?retryWrites=true&w=majority");r url
 //replace xxxxx with your url
 mongoose.connect("XXXXXXX",{useNewUrlParser: true,useUnifiedTopology:true })
 mongoose.connection.on("error", function(error) {
